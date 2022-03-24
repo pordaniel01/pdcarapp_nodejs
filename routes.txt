@@ -1,0 +1,37 @@
+index.html - autók listája táblázatosan, minden autóhoz gomb, amivel a bérlést el lehet kezdeni (new rent), admin törölhet módosíthat is autót
+caredit.html - auto módosításához form
+newcar.html - új autó beregisztrálása form (csak admin számára) (new car)
+rents.html - bérlések listája (saját felhasználó sajátjait, admin összeset látja), felhasználó itt befejezheti bármelyik bérlését, admin bármelyik bérlést felfüggesztheti
+login.html - bejelentkezés/regisztráció létrehozása egy form-on keresztül
+register.html - uj felhazsnáló regisztrációja
+profile.html - saját profil megtekintése, módosítása egy form-on keresztül
+
+middleware/auth/
+    checkPassMW.js
+    authMW.js
+
+middleware/car/
+    getCarsMW
+    getCarMW
+    saveCarMW
+    deleteCarMW
+
+middleware/rent/
+    getRentMW //felhasználó esetén a saját bérléseit admin esetén mindet
+    saveRentMW //felhasználó lefoglal autót
+    delRentMW
+
+middleware/user
+    g
+
+
+middleware/user
+
+GET /
+    authMW  
+    getCarsMW
+    renderMW(index.html)
+
+GET /car/:carid
+    authMW
+    getCar
