@@ -3,11 +3,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.use(express.static('static'));
+
+app.set('view engine', 'html');
 
 app.use(
     session({

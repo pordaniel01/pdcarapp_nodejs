@@ -7,6 +7,7 @@ module.exports = function(objectrepository, viewName) {
     };
 
     return function(req, res) {
+        console.log("renderMw works!")
         res.sendFile(viewName, options);
     };
 };

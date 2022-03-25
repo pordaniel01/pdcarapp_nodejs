@@ -5,10 +5,13 @@ rents.html - bérlések listája (saját felhasználó sajátjait, admin összes
 login.html - bejelentkezés/regisztráció létrehozása egy form-on keresztül
 register.html - uj felhazsnáló regisztrációja
 profile.html - saját profil megtekintése, módosítása egy form-on keresztül
+car.html - egy konkrét autó oldala
 
 middleware/auth/
-    checkPassMW.js
-    authMW.js
+    checkPassMW
+    authMW  -  mindig azonosítja a felhasználót aki az interakciót kezdeményezi
+    registerMW
+    logoutMW
 
 middleware/car/
     getCarsMW
@@ -22,16 +25,84 @@ middleware/rent/
     delRentMW
 
 middleware/user
-    g
+    getUserMW
+    newUserMW
+    deleteUserMW
+    updateUserMW
 
 
-middleware/user
-
-GET /
+GET /   -összes autó kilistázása
     authMW  
     getCarsMW
     renderMW(index.html)
 
-GET /car/:carid
+GET /car/:carid  -egy bizonyos autó lapja
     authMW
     getCar
+    renderMW(car.html)
+
+GET,POST /car/new   -új autó létrehozása (ha felhasználó admin)
+    authMW
+    saveCarMW
+    renderMW(newcar.html)  
+        - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+        - ha nem, akkor nem
+
+GET,POST /car/edit/:carid  -autó módosítása (ha admin felhasználó)   
+    authMW
+    getCarMW
+    saveCarMW
+    renderMW(newcar.html)
+            - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+            - ha nem, akkor nem
+
+GET /car/del/:carid  egy autó törlése, ha user admin és nincs az autó kibérelve
+    authMW
+    getCarMw
+    delCarMw
+
+GET /rents/ - belépett user rent-jei, ha admin mindenki rentjei
+    authMW
+    getUserMw
+    getRentMw
+    renderMW(rents.html)
+
+GET rent/:carid/del/:rentid 
+
+GET rent/del/:rentid  rent törlése, user a sajátjait, admin bármelyiket törölheti
+    authMW
+    delRentMw
+
+GET register/   - regisztráció
+    newUserMW
+    renderMW(register.html)
+
+GET login/
+    checkPassMW
+    renderMW(login.html)
+
+GET profile/
+    authMW
+    getUserMW
+    renderMW(profile.html)
+
+GET logout/
+    logoutMW
+
+GET update/user/  - saját profil modosítása
+    authMW
+    getUserMw
+    renderMW(profile.html)
+
+GET user/  - userek kilistázása
+    authMW
+    getUsersMW
+    renderMW(users.html)
+
+GET logout/
+    logoutMW
+
+
+
+
+
