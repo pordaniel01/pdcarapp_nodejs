@@ -27,28 +27,22 @@ module.exports = function(app) {
     const objRepo = {
         
     };
+  
 
-    app.use(
-        '/',
-        authMw(objRepo),
-        getCarsMw(objRepo),
-        renderMW(objRepo, 'index.html')
-    )
-
+ 
     //Car interactions
+    app.use(
+        '/car/new',
+        authMw(objRepo),
+        saveCarMw(objRepo),
+        renderMW(objRepo, 'newcar.html')
+    )
 
     app.use(
         '/car/:carid',
         authMw(objRepo),
         getCarMw(objRepo),
         renderMW(objRepo, 'car.html')
-    )
-
-    app.use(
-        '/car/new',
-        authMw(objRepo),
-        saveCarMw(objRepo),
-        renderMW(objRepo, 'newcar.html')
     )
 
     app.use(
@@ -103,6 +97,13 @@ module.exports = function(app) {
     )
 
     app.use(
+        '/profile',
+        authMw(objRepo),
+        getUserMw(objRepo),
+        renderMW(objRepo, 'profile.html')
+    )
+
+    app.use(
         '/update/user',
         authMw(objRepo),
         getUserMw(objRepo),
@@ -119,6 +120,13 @@ module.exports = function(app) {
     app.use(
         '/logout',
         logoutMw(objRepo)
+    )
+
+    app.use(
+        '/',
+        authMw(objRepo),
+        getCarsMw(objRepo),
+        renderMW(objRepo, 'index.html')
     )
 
     
