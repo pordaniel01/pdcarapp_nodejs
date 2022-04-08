@@ -1,0 +1,12 @@
+
+<%- include('header') -%>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%= car.image %>"" alt="car image">
+  <div class="card-body">
+    <h5 class="card-title"><%= car.name %></h5>
+    <p class="card-text"><%= car.color %></p>
+    <p class="card-text"><%= car.deatils %></p>
+    <a href="/rent/new/<%= car.id %>" class="btn btn-primary">Rent</a>
+  </div>
+</div>

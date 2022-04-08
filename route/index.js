@@ -35,14 +35,14 @@ module.exports = function(app) {
         '/car/new',
         authMw(objRepo),
         saveCarMw(objRepo),
-        renderMW(objRepo, 'newcar.html')
+        renderMW(objRepo, 'newcar.ejs')
     )
 
     app.use(
         '/car/:carid',
         authMw(objRepo),
         getCarMw(objRepo),
-        renderMW(objRepo, 'car.html')
+        renderMW(objRepo, 'car.ejs')
     )
 
     app.use(
@@ -50,7 +50,15 @@ module.exports = function(app) {
         authMw(objRepo),
         getCarMw(objRepo),
         saveCarMw(objRepo),
-        renderMW(objRepo, 'newcar.html')    
+        renderMW(objRepo, 'newcar.ejs')    
+    )
+
+    app.use(
+        '/car/del/:carid',
+        authMw(objRepo),
+        getCarMw(objRepo),
+        deleteCarMw(objRepo),
+        renderMW(objRepo, 'index.ejs')    
     )
 
     //Rent interactions
@@ -60,7 +68,7 @@ module.exports = function(app) {
         authMw(objRepo),
         getUserMw(objRepo),
         getRentMw(objRepo),
-        renderMW(objRepo, 'rents.html')
+        renderMW(objRepo, 'rents.ejs')
     )
 
     app.use(
@@ -68,7 +76,8 @@ module.exports = function(app) {
         authMw(objRepo),
         getUserMw(objRepo),
         getCarMw(objRepo),
-        saveRentMw(objRepo)
+        saveRentMw(objRepo),
+        renderMW(objRepo, 'rents.ejs')
     )
 
     app.use(
@@ -82,13 +91,13 @@ module.exports = function(app) {
     app.use(
         '/register',
         newUserMw(objRepo),
-        renderMW(objRepo, 'register.html')
+        renderMW(objRepo, 'register.ejs')
     )
 
     app.use(
         '/login',
         checkPassMw(objRepo),
-        renderMW(objRepo,'login.html')
+        renderMW(objRepo,'login.ejs')
     )
 
     app.use(
@@ -100,21 +109,21 @@ module.exports = function(app) {
         '/profile',
         authMw(objRepo),
         getUserMw(objRepo),
-        renderMW(objRepo, 'profile.html')
+        renderMW(objRepo, 'profile.ejs')
     )
 
     app.use(
         '/update/user',
         authMw(objRepo),
         getUserMw(objRepo),
-        renderMW(objRepo, 'profile.html')
+        renderMW(objRepo, 'profile.ejs')
     )
 
     app.use(
         '/users',
         authMw(objRepo),
         getUserMw(objRepo),
-        renderMW(objRepo, 'users.html')
+        renderMW(objRepo, 'users.ejs')
     )
 
     app.use(
@@ -126,8 +135,6 @@ module.exports = function(app) {
         '/',
         authMw(objRepo),
         getCarsMw(objRepo),
-        renderMW(objRepo, 'index.html')
-    )
-
-    
+        renderMW(objRepo, 'index.ejs')
+    )   
 }

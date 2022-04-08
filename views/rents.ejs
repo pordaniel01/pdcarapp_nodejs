@@ -1,0 +1,12 @@
+<%- include('header') -%>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<%= rent.car.image %>" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= rent.car.name %></h5>
+      <p class="card-text"><%= rent.car.name %></p>
+      <a href="/car/<%= rent.car.id %>" class="btn btn-primary">Deatils</a>
+      <a href="/rent/del/<%= rent.id %>" class="btn btn-danger">End Rent</a>
+    </div>
+  </div>
+    <p>itt lesznek láthatóak a bérlések, ha felhasználó vagy akkor a sajátjainkat, ha admin akkor az összeset</p>
+   

@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 
 app.use(express.static('static'));
 
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 app.use(
     session({

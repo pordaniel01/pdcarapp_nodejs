@@ -1,0 +1,15 @@
+
+<%- include('header') -%>
+
+<%cars.forEach(function(car){ %>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<%= car.image %>"" alt="car image">
+    <div class="card-body">
+      <h5 class="card-title"><%= car.name %></h5>
+      <p class="card-text"><%= car.color %></p>
+      <a href="/rent/new/<%= car.id %>" class="btn btn-primary">Rent</a>
+      <a href="/car/<%= car.id %>" class="btn btn-primary">Deatils</a>
+      <a href="/car/del/<%= car.id %>" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  <%}); %>
