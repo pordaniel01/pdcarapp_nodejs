@@ -3,19 +3,29 @@ const requireOption = require('../requireOption');
 module.exports = function(objectrepository) {
     //id alapján rent lekérdezése
     return function(req, res, next) {
-        res.locals.rent = {
-            id: 1,
-            user: { 
-                id: "1",
-                name: "felhasznalo",
-            },
-            car: {
-                id: "2",
-                name: "Renault",
-                image: "https://autosportmotor.com/wp-content/uploads/2019/08/2019-blue-renault-kadjar-elegant.jpg",
-                color: true
-            }
+        const CarModel = requireOption(objectrepository, 'CarModel');  
+        const RentModel = requireOption(objectrepository, 'RentModel');  
+
+        if(res.locals.userGroup == "admin"){
+            //ha admin minden bérlést lát
+            RentModel.find({}, (err, rents) => {
+                if(err){
+                    return next(err);
+                }
+                res.locals.rents = rents;
+                return next();
+            });
         }
-        next();
+        if(res.locals.user.userGroup == "user"){
+            RentModel.find({_renter: res.locals.user.id}, (err, rents) => {
+                if(err){
+                    return next(err);
+                }
+                res.locals.rents = rents;
+                return next();
+            });
+        }
+        
+        
     };
 };

@@ -3,12 +3,12 @@ const requireOption = require('../requireOption');
 module.exports = function(objectrepository) {
     // addott user adatainak lekérdezése
     return function(req, res, next) {
-        res.locals.user = {
-            id: "1",
-            name: "felhasznalo",
-            password: "",
-            email: "exmaple@gmail.com"
-        }
-        next();
+        const UserModel = requireOption(objectrepository, 'UserModel');
+        UserModel.findOne({username: req.session.username}, (err, user) => {
+            console.log("got the user!" + user.username + user.userGroup);
+            res.locals.user = user;
+            return next();
+        });
+        
     };
 };

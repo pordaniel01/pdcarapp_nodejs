@@ -1,15 +1,77 @@
 <%- include('header') -%>
-    <p>itt lehet majd uj autót felvenni ha a felhasználó admin (ez az oprció csak akkor les elérhető)</p>
+<%- include('navbar') -%>
 
-    <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Carname</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter carname">
+<br><br>
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+          <h1>
+            Upload Car
+            </h1>
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">car type</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="car type">
+        <div class="card-body">
+            <form method="POST">
+                <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                      <div class="input-group mb-3">
+                        <img id="carimage" style="border-radius: 200px; visibility: hidden" src="" class="img-thumbnail" width="300" height="300"   required>                 
+                      </div>
+                  </div>
+              </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Car name</span>
+                            </div>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="car Name" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">Color</span>
+                          </div>
+                          <input type="text" name="color" id="color" class="form-control"  placeholder="color" required> 
+                      </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">details</span>
+                          </div>
+                          <input type="text" name="details" id="details" class="form-control"  placeholder="details" required> 
+                      </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Image url</span>
+                            </div>
+                            <input type="text" name="image" id="image"  onchange="changeProfile()" class="form-control" placeholder="image">
+                        </div>
+                    </div>
+                </div>
+            <input type="submit" class="btn btn-primary" value="Upload">
+            </form>
         </div>
-      
-        <button type="submit" class="btn btn-primary" >Submit</button>
-      </form> 
+      </div>
+</div>
+
+<script>
+  function changeProfile() {
+  var location = document.getElementById("image");
+  var image = document.getElementById("carimage");
+  image.src = location.value;
+  image.style.visibility="visible";
+}
+</script>
+

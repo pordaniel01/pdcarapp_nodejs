@@ -18,16 +18,24 @@ const newUserMw = require('../middleware/user/newUserMw')
 const updateUserMW = require('../middleware/user/updateUserMw');
 const logoutMw = require('../middleware/auth/logoutMw');
 
+const UserModel = require('../models/user');
+const CarModel = require('../models/car');
+const RentModel = require('../models/rent');
 
-const objRepo = {
-    
-};
 module.exports = function(app) {
 
     const objRepo = {
-        
+        UserModel: UserModel,
+        CarModel: CarModel,
+        RentModel: RentModel
     };
-  
+
+    
+    app.use(
+        '/login',
+        checkPassMw(objRepo),
+        renderMW(objRepo,'login.ejs')
+    )
 
  
     //Car interactions
@@ -39,11 +47,13 @@ module.exports = function(app) {
     )
 
     app.use(
-        '/car/:carid',
+        '/car/del/:carid',
         authMw(objRepo),
         getCarMw(objRepo),
-        renderMW(objRepo, 'car.ejs')
+        deleteCarMw(objRepo)
     )
+
+    
 
     app.use(
         '/car/edit/:carid',
@@ -54,12 +64,13 @@ module.exports = function(app) {
     )
 
     app.use(
-        '/car/del/:carid',
+        '/car/:carid',
         authMw(objRepo),
         getCarMw(objRepo),
-        deleteCarMw(objRepo),
-        renderMW(objRepo, 'index.ejs')    
+        renderMW(objRepo, 'car.ejs')
     )
+
+    
 
     //Rent interactions
 
@@ -77,6 +88,7 @@ module.exports = function(app) {
         getUserMw(objRepo),
         getCarMw(objRepo),
         saveRentMw(objRepo),
+        getRentMw(objRepo),
         renderMW(objRepo, 'rents.ejs')
     )
 
@@ -94,15 +106,12 @@ module.exports = function(app) {
         renderMW(objRepo, 'register.ejs')
     )
 
-    app.use(
-        '/login',
-        checkPassMw(objRepo),
-        renderMW(objRepo,'login.ejs')
-    )
+    
 
     app.use(
         '/logout',
-        logoutMw(objRepo)
+        logoutMw(objRepo),
+        renderMW(objRepo,'login.ejs')
     )
 
     app.use(
