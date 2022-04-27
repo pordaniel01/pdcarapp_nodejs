@@ -95,7 +95,8 @@ module.exports = function(app) {
     app.use(
         '/rent/del/:rentid',
         authMw(objRepo),
-        delRentMw(objRepo)
+        delRentMw(objRepo),
+        renderMW(objRepo, 'rents.ejs')
     )
 
     //user interactions

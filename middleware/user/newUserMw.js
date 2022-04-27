@@ -21,14 +21,14 @@ module.exports = function(objectrepository) {
         UserModel.find({}, (err, users) => {
             if(users.length <= 0){
                 //if no users first user to register shall be admin
-                console.log("admin")
-                res.locals.userGroup = "admin";
+                console.log(" newadmin")
+                res.locals.user.userGroup = "admin";
             } else {
                 console.log("user")
-                res.locals.userGroup = "user";
+                res.locals.user.userGroup = "user";
             }
             req.session.username = res.locals.user.username
-            req.session.userGroup = res.locals.userGroup
+            req.session.userGroup = res.locals.user.userGroup
 
             req.session.save(err =>{
                 console.log(err);

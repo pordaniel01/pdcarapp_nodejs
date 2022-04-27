@@ -1,15 +1,13 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
-<%rents.forEach(function(rent){ %>
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="<%= rent._car.image %>" alt="Card image cap">
+<%cars.forEach(function(car){ %>
+  <div class="card" style="width: 18rem; margin:45px; ">
+    <img class="card-img-top" src="<%= car.image %>"" alt="car image">
     <div class="card-body">
-      <h5 class="card-title"><%= rent._car.name %></h5>
-      <p class="card-text"><%= rent._car.details %></p>
-      <a href="/car/<%= rent._car.id %>" class="btn btn-primary">Deatils</a>
-      <a href="/rent/del/<%= rent.id %>" class="btn btn-danger">End Rent</a>
+      <h5 class="card-title"><%= car.name %></h5>
+      <p class="card-text"><%= car.color %></p>
+      <a href="/car/<%= car._id %>" class="btn btn-primary">Deatils</a>
+      <a href="/rent/del/<%= car.rentid %>" class="btn btn-danger">End Rent</a>
     </div>
   </div>
   <%}); %>
-    <p>itt lesznek láthatóak a bérlések, ha felhasználó vagy akkor a sajátjainkat, ha admin akkor az összeset</p>
-   
