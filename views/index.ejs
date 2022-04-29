@@ -12,7 +12,9 @@
       <p class="card-text"><%= car.color %></p>
       <a href="/rent/new/<%= car.id %>" class="btn btn-primary">Rent</a>
       <a href="/car/<%= car.id %>" class="btn btn-primary">Deatils</a>
+      <%if(userGroup == "admin"){ %>
       <a href="/car/del/<%= car.id %>" class="btn btn-danger">Delete</a>
+      <% } %>
     </div>
   </div>
 </div>

@@ -5,15 +5,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/">CARS </a>
+        <a id="car" class="nav-item nav-link active" href="/">CARS </a>
         <%if(userGroup === "admin"){ %>
-        <a class="nav-item nav-link" href="/rents">Rents</a>
-        <a class="nav-item nav-link" href="/profile">My Profile</a>
-        <a class="nav-item nav-link" href="/car/new">New car</a>
+        <a id="rent" class="nav-item nav-link" href="/rents">Rents</a>
+        <a id="prof" class="nav-item nav-link" href="/profile">My Profile</a>
+        <a id="new" class="nav-item nav-link" href="/car/new">New car</a>
         <%} %>
         <%if(userGroup === "user"){ %>
-          <a class="nav-item nav-link" href="/rents">My Rents</a>
-          <a class="nav-item nav-link" href="/profile">My Profile</a>
+          <a id="rentu" class="nav-item nav-link" href="/rents">My Rents</a>
+          <a id="profu" class="nav-item nav-link" href="/profile">My Profile</a>
         <%} %>
       </div>
     </div>
@@ -21,3 +21,41 @@
       <li><a  class="nav-item nav-link" href="/logout">Logout</a></li>
     </ul>
   </nav>
+
+  <script>
+    var rent = document.getElementById("rent")
+    var rentu = document.getElementById("rentu")
+    var profu = document.getElementById("profu")
+    var car = document.getElementById("car")
+    var prof = document.getElementById("prof")
+    var _new = document.getElementById("new")
+    var navs = [rent,car,prof,_new,rentu,profu]
+    navs.forEach(element => {
+      console.log(element)
+      if(element != null)
+        element.className = "nav-item nav-link"
+    });
+    console.log(window.location.pathname)
+    if(window.location.pathname == "/rents"){
+      if(rent != null)
+      rent.className = "nav-item nav-link active"
+      if(rentu != null)
+      rentu.className = "nav-item nav-link active"
+    }
+    else if(window.location.pathname == "/profile"){
+      if(prof != null)
+      prof.className = "nav-item nav-link active"
+      if(profu != null)
+      profu.className = "nav-item nav-link active"
+    }
+    else if(window.location.pathname == "/car/new"){
+      if(_new != null)
+      _new.className = "nav-item nav-link active"
+    }
+    else if(window.location.pathname == "/"){
+      if(car != null)
+      car.className = "nav-item nav-link active"
+    }
+
+
+  </script>

@@ -1,14 +1,62 @@
 
 <%- include('header') -%>
 <%- include('navbar') -%>
+<div class="container">
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="<%= car.image %>"" alt="car image">
-  <div class="card-body">
-    <h5 class="card-title"><%= car.name %></h5>
-    <p class="card-text"><%= car.color %></p>
-    <p class="card-text"><%= car.deatils %></p>
-    <%if(car._renter == undefined){ %>
-    <a href="/rent/new/<%= car.id %>" class="btn btn-primary">Rent</a>
-    <% } %>
-  </div>
+  
+    <div style="display: block;" id='view' class="card-body">
+      
+      <h5 id="field" class="card-title"><%= car.name %></h5>
+      <h5 id="field" >Details:</h5>
+      <p id="field" class="card-text"><%= car.details %></p>
+      <h5 id="field" >Color:</h5>
+      <p id="field" class="card-text"><%= car.color %></p>
+      
+      
+      <%if(car._renter == undefined){ %>
+      <a href="/rent/new/<%= car.id %>" class="btn btn-primary">Rent</a>
+      <% } %>
+      <%if(userGroup == "admin"){ %>
+        <button onclick="myFunction()" class="btn btn-primary">Edit car</button>
+      <% } %>
+    </div>
+
+
+    <div class="row justify-content-center" style="display: none;" id="admin">
+      <form  method="POST" action="/car/edit/<%= car.id %>">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Car name:</span>
+      </div>  
+      <input name="name"  id="name"  class="form-control" placeholder="<%= car.name %>" required>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Color</span>
+      </div>
+      <input name="color" id="color"  class="form-control" placeholder="<%= car.color %>" required>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Details</span>
+      </div>
+      <input name="details" id="details"  class="form-control" placeholder="<%= car.details %>" required>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Image url</span>
+      </div>
+      <input name="image" id="image"  class="form-control" placeholder="<%= car.image %>" required>
+      <button type="submit" class="btn btn-primary" >Edit car</button>
+      </form>
+    </div>
+  
 </div>
+</div>
+<script>
+function myFunction() {
+  var admin = document.getElementById("admin");
+  var view = document.getElementById("view");
+  if (admin.style.display === "none") {
+    admin.style.display = "block";
+    view.style.display = "none"
+  } else {
+    admin.style.display = "none";
+    view.style.display = "block"
+  }
+}
+</script>
