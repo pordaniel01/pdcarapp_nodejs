@@ -1,10 +1,18 @@
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    //létező user adatainak a frissítése
     
     return function(req, res, next) {
-        console.log('updateUserMwWorks works!')
-        next();
+        res.locals.user.username = req.body.username
+        res.locals.user.password = req.body.password
+        req.session.username = res.locals.user.username
+        console.log("edit user " + req.body.username + req.body.password)
+        res.locals.user.save(err => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/logout');
+        });
     };
 };

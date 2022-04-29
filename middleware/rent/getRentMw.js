@@ -12,8 +12,11 @@ module.exports =  function(objectrepository) {
                 if(err){
                     return next(err);
                 }
-                if(rents == undefined){
+                if(rents.length == 0){
+                    res.locals.rents = [];
+                    res.locals.cars = [];
                     next();
+                    
                 }
                 let cars = [];
                 for(let i = 0; i < rents.length; i++){

@@ -126,6 +126,7 @@ module.exports = function(app) {
         '/update/user',
         authMw(objRepo),
         getUserMw(objRepo),
+        updateUserMW(objRepo),
         renderMW(objRepo, 'profile.ejs')
     )
 

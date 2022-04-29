@@ -9,6 +9,5 @@ module.exports = function(objectrepository) {
             res.locals.user = user;
             return next();
         });
-        
     };
 };
