@@ -1,3 +1,3 @@
-5 FELADAT LEADÁS:
+6 FELADAT LEADÁS:
 
-Eddig a MW és funkcióim fele lett implementálva körülbelül
+Sztem kész, nem szép
